@@ -1,0 +1,2 @@
+umwandlung rekursion in tail recursive oder iterativ
+bitwise and or xor operation a la A XOR A =?
