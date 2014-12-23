@@ -101,10 +101,85 @@ public class Roman {
 		return romanstr;
 	}
 	
+	static String toRomanWeird( String romanstr, int n) {
+
+		if( n == 0 ) {
+			System.out.println( romanstr );
+		}
+		
+		if( n>= 1000 ) {
+			toRomanWeird( romanstr + "M", n - 1000 );
+			return romanstr;
+		}
+		
+		if( n>= 900 ) {
+			toRomanWeird( romanstr + "CM", n - 900 );
+			return romanstr;
+		}
+		
+		if( n>= 500 ) {
+			toRomanWeird( romanstr + "D", n - 500 );
+			return romanstr;
+		}
+		
+		if( n>= 400 ) {
+			toRomanWeird( romanstr + "CD", n - 400 );
+			return romanstr;
+		}
+		
+		if( n>= 100 ) {
+			toRomanWeird( romanstr + "C", n - 100 );
+			return romanstr;
+		}
+		
+		if( n>= 90 ) {
+			toRomanWeird( romanstr + "XC", n - 90 );
+			return romanstr;
+		}
+		
+		if( n>= 50 ) {
+			toRomanWeird( romanstr + "L", n - 50 );
+			return romanstr;
+		}
+		
+		if( n>= 40 ) {
+			toRomanWeird( romanstr + "XL", n - 40 );
+			return romanstr;
+		}
+		
+		if( n>= 10 ) {
+			toRomanWeird( romanstr + "X", n - 10 );
+			return romanstr;
+		}
+		
+		if( n>= 9 ) {
+			toRomanWeird( romanstr + "IX", n - 9 );
+			return romanstr;
+		}
+		
+		if( n>= 5 ) {
+			toRomanWeird( romanstr + "V", n - 5 );
+			return romanstr;
+		}
+		
+		if( n>= 4 ) {
+			toRomanWeird( romanstr + "IV", n - 4 );
+			return romanstr;
+		}
+		
+		if( n>= 1 ) {
+			toRomanWeird( romanstr + "I", n - 1 );
+			return romanstr;
+		}
+		
+		return romanstr;
+	}
+	
 	static String toRoman(int n) {
 		String romanstr = "";
 		
-		System.out.println( toRomanSane( n ));
+		//System.out.println( toRomanSane( n ));
+		toRomanWeird( romanstr, n );
 		
 		return romanstr;
 	}

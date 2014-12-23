@@ -5,6 +5,25 @@ import java.util.Iterator;
 import java.util.Random;
 /**
  * Recursively generates a pythagorean tree.
+ * 
+ * Idea:
+ * 1. generate square in unit circle
+ * 2. scale it up
+ * 3. generate random angle and rotate
+ * 4. put angle at topleft corner of the base square and calc the length of the opposite side
+ * 5. calculate the remaining sidelength with pythagoras
+ * 6. place 1 square to topleft corner of base square
+ * 7. scale it by calculated sidelength
+ * 8. rotate by random angle + angle of base square
+ * 9. push to isogon arraylist
+ * 10. recurse n times to *3
+ * 11. get botright corner of left square
+ * 12. generate square and place it at botright of left square
+ * 13. rotate -90deg - angle of left square
+ * 14. scale it by the calculated length earlier
+ * 15. push to isogon arraylist
+ * 14. recurse n times to *3
+ * 15. print Treelist
  */
 public class Tree {
 	
@@ -47,7 +66,7 @@ public class Tree {
 		
 		int n = parseInput(args); // Anzahl der auszugebenen Vielecke
 
-		double myscale = 10.0; // Groeße der Zeichenebene in alle Richtungen
+		double myscale = 10.0; // Groesse der Zeichenebene in alle Richtungen
 		StdDraw.setXscale(-myscale, myscale);
 		StdDraw.setYscale(-myscale, myscale);
 		double[] pos = new double[] { 0, -myscale + 0.3 }; // alle Punkte sind Arrays mit zwei Eintraegen 
@@ -199,7 +218,7 @@ public class Tree {
 		 * @param scale of the square
 		 */
 		private void init( double[] start, double scale ) {
-			this.IsoArray.add( new Isogon( start, 0, scale ) );
+			IsoArray.add( new Isogon( start, 0, scale ) );
 		}
 		
 		/**
