@@ -1,0 +1,75 @@
+program decode
+// Input:    
+// Output:   
+// Remarks:  
+// -----------------------------------------------------------------------------
+
+
+
+
+10: 81FF   read R[1]                     read 1st bit
+
+11: D114   if (R[1] > 0) goto 14         check if >=0
+12: C114   if (R[1] == 0) goto 14        
+13: 0000   halt                          
+
+14: 82FF   read R[2]                     read 2nd bit
+15: 83FF   read R[3]                      read 3rd bit
+16: 84FF   read R[4]                      read 4th bit
+
+17: 85FF   read R[5]                       read 1st parity bit
+18: 86FF   read R[6]                      read 2nd bit
+19: 87FF   read R[7]                       read 3rd bit
+
+1A: 4812   R[8] <- R[1] ^ R[2]            gen parity bit for 1st 
+1B: 4884   R[8] <- R[8] ^ R[4]           
+
+1C: 4885   R[8] <- R[8] ^ R[5]           xor gen bit / read bit
+1D: C81F   if (R[8] == 0) goto 1F        
+1E: 7901   R[9] <- 0001                  
+
+1F: 7900   R[9] <- 0000                  set 9, errorcode to 0
+
+20: 4813   R[8] <- R[1] ^ R[3]            gen parity bit for 1st 
+21: 4884   R[8] <- R[8] ^ R[4]           
+
+22: 4886   R[8] <- R[8] ^ R[6]           xor gen bit / read bit
+23: C826   if (R[8] == 0) goto 26        
+24: 7A02   R[A] <- 0002                  
+25: 199A   R[9] <- R[9] + R[A]           
+
+26: 4823   R[8] <- R[2] ^ R[3]            gen parity bit for 1st 
+27: 4884   R[8] <- R[8] ^ R[4]           
+
+28: 4887   R[8] <- R[8] ^ R[7]           xor gen bit / read bit
+29: C82C   if (R[8] == 0) goto 2C        
+2A: 7A03   R[A] <- 0003                  
+2B: 199A   R[9] <- R[9] + R[A]
+
+2C: 7A01   R[A] <- 0001  
+
+2D: 7803   R[8] <- 0003            
+2E: 4898   R[8] <- R[9] ^ R[8]           check if R9 == 3
+2F: D831   if (R[8] > 0) goto 31        
+30: 411A   R[1] <- R[1] ^ R[A]           flip bit in 1
+
+31: 7804   R[8] <- 0004            
+32: 4898   R[8] <- R[9] ^ R[8]           check if R9 == 4
+33: D835   if (R[8] > 0) goto 35        
+34: 422A   R[2] <- R[2] ^ R[A]           flip bit in 2
+
+35: 7805   R[8] <- 0005            
+36: 4898   R[8] <- R[9] ^ R[8]           check if R9 == 5
+37: D839   if (R[8] > 0) goto 39         
+38: 433A   R[3] <- R[3] ^ R[A]           flip bit in 3
+
+39: 7806   R[8] <- 0006            
+3A: 4898   R[8] <- R[9] ^ R[8]           check if R9 == 5
+3B: D83D   if (R[8] > 0) goto  3D       
+3C: 444A   R[4] <- R[4] ^ R[A]           flip bit in 4
+
+3D: 91FF   write R[1]                    
+3E: 92FF   write R[2]    
+3F: 93FF   write R[3]    
+40: 94FF   write R[4]                    
+41: C010   goto 10                       
