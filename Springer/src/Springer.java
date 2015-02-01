@@ -188,7 +188,7 @@ public class Springer {
 		 ******************************************************/
 		public boolean knightcollision( int x, int y  ) {
 			
-			/* Fälle:
+			/* Flle:
 			 * x-2 y-1
 			 * x-2 y+1
 			 * x-1 y-2
@@ -400,12 +400,6 @@ public class Springer {
 	 *****************************************************/
 	
 	
-	
-	
-	
-	
-	
-	
 	/*******************************************************
 	 * validates input.
 	 *
@@ -470,7 +464,7 @@ public class Springer {
 	}
 }
 
-/* 6 lösung
+/* 6 lsung
  * 	S*S*S*
 	*S*S*S
 	S*S*S*

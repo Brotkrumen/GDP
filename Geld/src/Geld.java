@@ -1,7 +1,7 @@
 class Geld {
 	
 	private static boolean USE_CACHE = false;
-	private static long[][] CACHE = new long[1000][7];
+	private static long[][] CACHE = new long[1000][8];
 	private static int[] VALUE = {1, 2, 5, 10, 20, 50, 100, 200 };
 	
 	private static int parseInput( String[] args ) {
@@ -27,7 +27,7 @@ class Geld {
 		try {
 			input = Integer.parseInt(args[pos]);
 		} catch ( Throwable ablageP ) {
-			System.out.println("Aufruf mit Geldbetrag (in Cent) als Parameter 2" );
+			System.out.println("Aufruf mit Geldbetrag (in Cent) als Parameter" );
 			System.exit(-1);
 		}
 		
@@ -50,8 +50,6 @@ class Geld {
 		System.out.print(" kann auf ");
 		System.out.print(pay(sum));
 		System.out.println(" verschiedene Arten passend bezahlt werden");
-		
-		System.out.println( billion() );
 	}
 
 	public static long pay (int m) {
